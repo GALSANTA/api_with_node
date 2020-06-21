@@ -1,5 +1,6 @@
 const http = require("http");
 const url = require("url");
+const routes = require('./src/routes');
 
 let dados = {}
 
@@ -14,6 +15,7 @@ const server = http.createServer(function (req, res) {
     dados.headers = headers;
     dados.method = method
     dados.path = path;
+    dados.route = whatRoute(dados.path);
   
     
     req.on("data", function (data) {
@@ -21,7 +23,8 @@ const server = http.createServer(function (req, res) {
     });
   
     req.on("end", function () {
-        console.log(whatRoute(dados.path));
+        let route = routes[dados.route];
+        route(dados, res);
     });
   
   
@@ -72,18 +75,3 @@ const server = http.createServer(function (req, res) {
   
       return d;
   }
-
-
-  
-const routes = {
-
-    "/": async function(dados, res) {
-
-    },
-    "excluir/:id": async function(dados, res) {
-
-    },
-    notFound: function(data, res) {
-        
-    }
-  };
