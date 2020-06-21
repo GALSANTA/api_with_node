@@ -1,6 +1,5 @@
-const con = require('./src/database/DBconnect');
+const Livro = require('./src/controller/Livro');
 
+const livro = new Livro();
 
-con.query("SELECT * FROM tb_livro", function(error, results, fields){
-    console.log(results);
-});
+livro.listar();
