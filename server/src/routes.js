@@ -1,10 +1,10 @@
 const Livro = require('./controller/Livro');
 
+const livro = new Livro();
 const routes = {
 
     "/": async function(dados, res) {
-        console.log("/");
-        console.log(dados);
+      if (dados.method === "get") livro.listar(res);
     },
     "excluir/:id": async function(dados, res) {
         console.log("EXCLUIR");
