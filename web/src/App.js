@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import Card from './components/Card';
-import api from './service/api';
-
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import List from './pages/List';
+import Edit from './pages/Edit';
 
 function App() {
-  const [dados, setDados] = useState([]);
-
-  useEffect(() => {
-    var k = Promise.resolve(api.index());
-    k.then(function (v) {
-      setDados(v.data);
-
-    });
-
-  }, []);
+ 
+  
 
   return (
     <>
-      <div className="container">
-        {dados.map((d) => (<Card key={d.id} dados={d}></Card>))}
-      </div>
-      <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
-          <i class="large material-icons">mode_edit</i>
-        </a>
-      </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={ List } />
+        <Route path="/edit/:id" component={ Edit } />
+
+      </Switch>
+    </BrowserRouter>
+      
     </>
   );
 }
