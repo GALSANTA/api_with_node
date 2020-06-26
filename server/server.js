@@ -10,10 +10,8 @@ const server = http.createServer(function (req, res) {
     let path = parsedURL.pathname;
     let headers = req.headers;
     let method = req.method.toLowerCase();
-  
-  
     dados.headers = headers;
-    dados.method = method
+    dados.method = method;
     dados.path = path;
     dados.route = whatRoute(dados.path);
   

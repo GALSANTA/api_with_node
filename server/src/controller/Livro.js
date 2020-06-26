@@ -17,6 +17,18 @@ class Livro {
             }      
           });
     }
+
+    excluir(res, dados) {
+        connection.query("DELETE FROM tb_livro WHERE id="+dados.params, function(error, results, fields){
+            if (error) {
+                res.writeHead(500);
+                res.end("\n");
+            } else {
+                res.writeHead(200);
+                res.end("\n");
+            }      
+          });
+    }
 }
 
 

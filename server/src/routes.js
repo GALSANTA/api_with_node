@@ -7,8 +7,7 @@ const routes = {
       if (dados.method === "get") livro.listar(res);
     },
     "excluir/:id": async function(dados, res) {
-        console.log("EXCLUIR");
-        console.log(dados);
+      if (dados.headers["access-control-request-method"].toLowerCase() === "delete") livro.excluir(res,dados);
     },
     notFound: function(data, res) {
         console.log("NOTFOUND");
