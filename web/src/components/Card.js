@@ -34,7 +34,7 @@ function Card({ dados }) {
             </div>
             <div className="card-action">
               <a className="right" href={`/edit/${id}`}>Editar</a>
-              <a className="right" onClick={event => { removeProduct(event) }}>Excluir</a>
+              <button className="right" onClick={event => { removeProduct(event) }}>Excluir</button>
             </div>
           </div>
         </div>
