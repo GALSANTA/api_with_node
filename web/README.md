@@ -16,8 +16,6 @@ npm install
 npm start
 ``` 
 
----
-
 ## O que não esquecer
 
 <b>No arquivo [service](https://github.com/GALSANTA/api_with_node/blob/master/web/src/service/api.js) não esquecer de alterar a porta caso utilize outra</b> 
