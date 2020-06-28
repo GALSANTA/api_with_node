@@ -3,9 +3,10 @@ import api from '../service/api';
 
 function Card({ dados }) {
   console.log(dados);
-  let { id, autor, nome, sinopse, editora, idioma, data_publicao, url } = dados;
-  var d = new Date(data_publicao);
-  data_publicao = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+  let { id, autor, nome, sinopse, editora, idioma, data_publicacao, url } = dados;
+  var d = new Date(data_publicacao);
+  var mes = d.getMonth()<10?"0"+(d.getMonth()+1):d.getMonth()+1;
+  data_publicacao = d.getDate()+"/"+mes+"/"+d.getFullYear();
 
   const removeProduct = function (event) {
     event.preventDefault();
@@ -28,13 +29,13 @@ function Card({ dados }) {
               <span>
                 Autor: {autor} <br/>
                 Idioma: {idioma} <br/>
-                Data de publicação: {data_publicao} 
+                Data de publicação: {data_publicacao} 
               </span>
               <p> Sinopse: <br/>{sinopse}</p>
             </div>
             <div className="card-action">
               <a className="right" href={`/edit/${id}`}>Editar</a>
-              <button className="right" onClick={event => { removeProduct(event) }}>Excluir</button>
+              <a className="right" onClick={event => { removeProduct(event) }}>Excluir</a>
             </div>
           </div>
         </div>

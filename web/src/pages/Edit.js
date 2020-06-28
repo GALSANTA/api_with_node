@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router';
 import api from '../service/api';
 
 function Edit(data) {
@@ -7,9 +8,12 @@ function Edit(data) {
     let [autor, setAutor] = useState();
     let [idioma, setIdioma] = useState();
     let [editora, setEditora] = useState();
-    let [data_publicao, setData] = useState();
+    let [data_publicacao, setData] = useState();
     let [url, setUrl] = useState();
     let [sinopse, setSinopse] = useState();
+
+
+    let [redirect, setRedirect] = useState(false);
 
 
     useEffect((e) => {
@@ -19,7 +23,7 @@ function Edit(data) {
             setAutor(v.data[0].autor);
             setIdioma(v.data[0].idioma);
             setEditora(v.data[0].editora);
-            setData(parseData(v.data[0].data_publicao));
+            setData(parseData(v.data[0].data_publicacao));
             setUrl(v.data[0].url);
             setSinopse(v.data[0].sinopse);
 
@@ -42,9 +46,19 @@ function Edit(data) {
         return d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
     }
 
-    function handleSubmit() {
-
+    function handleSubmit(e) {
+        e.preventDefault();
+        var id = data.match.params.id;
+       api.update({id, nome, autor, idioma, editora, data_publicacao, url, sinopse})
+       .then(()=>{
+           setRedirect(true);
+       });
     }
+
+    if(redirect) {
+        return <Redirect to="/" />
+      }
+
     return (
         <div className="container">
             <form onSubmit={handleSubmit}>
@@ -74,7 +88,7 @@ function Edit(data) {
                         <label className="active" htmlFor="editora">Editora do Livro</label>
                     </div>
                     <div className="input-field col s6">
-                        <input value={data_publicao} id="data" type="text" className="validate" onChange={handleChange}/>
+                        <input value={data_publicacao} id="data" type="text" className="validate" onChange={handleChange}/>
                         <label className="active" htmlFor="data">Data da publicação</label>
                     </div>
                 </div>

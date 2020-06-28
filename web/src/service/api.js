@@ -13,8 +13,8 @@ const getLivro = async ( id ) => {
     return await axios.get(`http://localhost:3333/edit/${id}`);
 }
 
-const update = ( id, product ) => {
-    return axios.put(`http://localhost:3333/edit/${id}`, product);
+const update = ( livro ) => {
+    return axios.put(`http://localhost:3333/edit/${livro.id}`, livro);
 }
 
 export default {
