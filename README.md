@@ -12,6 +12,7 @@
 
 * Você precisa ter instalado em sua máquina o gerenciador de dependêcias [NPM](https://www.npmjs.com/get-npm)
 * Você precisa ter instalado em sua máquina algum banco de dados MySQL
+* Você precisa ter instalado em sua máquina o Node.js
 
 
 <b>Faça um git clone do projeto: </b>
