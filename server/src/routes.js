@@ -13,6 +13,9 @@ const routes = {
       if (dados.method === "GET") livro.pegar(res, dados);
       else if (dados.method === "PUT") livro.editar(res, dados);
     },
+    "add": async function(dados, res) {
+      if (dados.method === "POST") livro.cadastrar(res, dados);
+    },
     notFound: function(data, res) {
         console.log("NOTFOUND");
     }

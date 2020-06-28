@@ -77,6 +77,31 @@ class Livro {
             }
         });
     }
+
+    cadastrar(res, dados) {
+        let { nome, autor, idioma, editora, data_publicacao, url, sinopse} = JSON.parse(dados.data);
+        data_publicacao = data_publicacao.split('/');
+        data_publicacao = data_publicacao[2] + '-' + data_publicacao[1] + '-' + data_publicacao[0];
+
+
+        let sql = "INSERT INTO tb_livro ( nome, editora, autor, idioma, sinopse, url, data_publicacao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+           
+        let data = [nome, editora, autor, idioma, sinopse, url, data_publicacao];
+
+        
+        connection.query(sql, data, function(error, results, fields) {
+            if (error) {
+                console.log("ERRO"+error)
+                res.writeHead(500);
+                res.end("\n");
+            } else {
+                console.log("SUCCESS");
+                res.writeHead(200);
+                res.end("\n");
+            }
+        });
+    }
 }
 
 
